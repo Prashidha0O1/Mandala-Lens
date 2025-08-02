@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Book Price Comparison",
+    "version": "1.0",
+    "description": "Compare book prices from Books Mandala and Daraz.",
+    "permissions": ["activeTab", "scripting", "storage"],
+    "host_permissions": ["https://*.google.com/*", "https://*.daraz.com.np/*", "https://*.booksmandala.com/*"],
+    "background": {
+      "service_worker": "src/background.js",
+      "type": "module"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.google.com/search*", "https://*.daraz.com.np/*", "https://*.booksmandala.com/*"],
+        "js": ["src/content.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "action": {
+      "default_popup": "src/popup/index.html",
+      "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+      }
+    },
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["src/popup/styles.css"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
